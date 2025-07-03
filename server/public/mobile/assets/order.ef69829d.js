@@ -1,0 +1,1 @@
+import{Z as a}from"./index.0909ac6c.js";const r=r=>a.post({url:"/order/sumbitOrder",data:r}),e=r=>a.get({url:"/order/lists",data:r},{ignoreCancel:!0}),t=r=>a.get({url:"/order/detail",data:r}),d=r=>a.post({url:"/order/cancel",data:r}),s=r=>a.post({url:"/order/del",data:r});export{r as a,e as b,d as c,s as d,t as e};

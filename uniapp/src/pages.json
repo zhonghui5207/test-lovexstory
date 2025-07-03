@@ -1,0 +1,355 @@
+{
+    "pages": [
+        {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "首页"
+            }
+        },
+        {
+            "path": "pages/user/user",
+            "style": {
+                "navigationBarTitleText": "个人中心"
+            }
+        },
+        {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        },
+        {
+            "path": "pages/register/register",
+            "style": {
+                "navigationBarTitleText": "注册"
+            }
+        },
+        {
+            "path": "pages/forget_pwd/forget_pwd",
+            "style": {
+                "navigationBarTitleText": "忘记密码"
+            }
+        },
+        {
+            "path": "pages/customer_service/customer_service",
+            "style": {
+                "navigationBarTitleText": "联系客服"
+            }
+        },
+        {
+            "path": "pages/user_set/user_set",
+            "style": {
+                "navigationBarTitleText": "个人设置"
+            },
+            "auth": true
+        },
+        {
+            "path": "pages/as_us/as_us",
+            "style": {
+                "navigationBarTitleText": "关于我们"
+            }
+        },
+        {
+            "path": "pages/agreement/agreement",
+            "style": {
+                "navigationBarTitleText": "协议"
+            }
+        },
+        {
+            "path": "pages/change_password/change_password",
+            "style": {
+                "navigationBarTitleText": "修改密码"
+            },
+            "auth": true
+        },
+        {
+            "path": "pages/user_data/user_data",
+            "style": {
+                "navigationBarTitleText": "个人资料"
+            },
+            "auth": true
+        },
+        {
+            "path": "pages/webview/index"
+        },
+        {
+            "path": "pages/bind_mobile/bind_mobile",
+            "style": {
+                "navigationBarTitleText": "绑定手机号"
+            }
+        },
+        {
+            "path": "pages/empty/empty",
+            "style": {
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "uni_modules/vk-uview-ui/components/u-avatar-cropper/u-avatar-cropper",
+            "style": {
+                "navigationBarTitleText": "头像裁剪",
+                "navigationBarBackgroundColor": "#000000"
+            }
+        },
+        {
+            "path": "pages/category/index",
+            "style": {
+                "navigationBarTitleText": "分类"
+            }
+        },
+        {
+            "path": "pages/study/index",
+            "style": {
+                "navigationBarTitleText": "学习"
+            },
+            "auth":true
+        },
+        {
+            "path": "pages/course_detail/index",
+            "style": {
+                "navigationBarTitleText": "课程详情"
+            },
+            "auth": true
+
+        },
+        {
+            "path": "pages/study_course/index",
+            "style": {
+                "navigationBarTitleText": "学习",
+                "navigationStyle":"custom"
+            },
+            "auth": true
+
+        },
+        {
+            "path": "pages/order_buy/index",
+            "style": {
+                "navigationBarTitleText": "提交订单"
+            },
+
+                "auth": true
+
+        }
+    ],
+    "subPackages": [{
+        "root": "bundle",
+        "pages": [{
+            "path": "pages/search/index",
+            "style": {
+                "navigationBarTitleText": "搜索"
+            }
+        },
+        {
+            "path": "pages/evaluate_list/index",
+            "style": {
+                "navigationBarTitleText": "我的评价"
+            },
+            "auth": true
+
+        }, 
+        {
+            "path": "pages/evaluate_submit/index",
+            "style": {
+                "navigationBarTitleText": "提交评价"
+            }
+        }, 
+        {
+            "path": "pages/evaluate_goods/index",
+            "style": {
+                "navigationBarTitleText": "全部评价"
+            },
+            "auth": true
+
+        }, 
+        {
+            "path": "pages/collection_list/index",
+            "style": {
+                "navigationBarTitleText": "我的收藏"
+            },
+             "auth": true
+
+        }, 
+        {
+            "path": "pages/activity/index",
+            "style": {
+                "navigationBarTitleText": "专栏专区"
+            }
+        }, 
+        {
+            "path": "pages/activity_detail/index",
+            "style": {
+                "navigationBarTitleText": "专区内页"
+            }
+        }, 
+        {
+            "path": "pages/teacher_detail/index",
+            "style": {
+                "navigationBarTitleText": "讲师主页"
+            }
+        }, 
+        {
+            "path": "pages/order_list/index",
+            "style": {
+                "navigationBarTitleText": "订单列表"
+            },
+            "auth":true
+        }, 
+        {
+            "path": "pages/order_detail/index",
+            "style": {
+                "navigationBarTitleText": "订单详情"
+            }
+        }, 
+        {
+            "path": "pages/user_wallet/index",
+            "style": {
+                "navigationBarTitleText": "我的钱包"
+            },
+            "auth": true
+        }, 
+        {
+            "path": "pages/user_charge/index",
+            "style": {
+                "navigationBarTitleText": "充值中心"
+            },
+            "auth": true
+
+        }, 
+        {
+            "path": "pages/user_charge_record/index",
+            "style": {
+                "navigationBarTitleText": "充值记录"
+            },
+            "auth": true
+
+        }, 
+        {
+            "path": "pages/subject_list/index",
+            "style": {
+                "navigationBarTitleText": "专栏专区"
+            }
+        }, 
+        {
+            "path": "pages/subject_detail/index",
+            "style": {
+                "navigationBarTitleText": "专区内页"
+            }
+        }, 
+        {
+            "path": "pages/hot_list/index",
+            "style": {
+                "navigationBarTitleText": "热门课程"
+            }
+        },
+        {
+            "path":"pages/pay_result/index",
+            "style":{
+                "navigationBarTitleText":"支付结果"
+            }
+        },
+        {
+            "path":"pages/get_coupon/index",
+            "style":{
+                "navigationBarTitleText":"领取优惠券"
+            },
+            "auth":true
+        },{
+            "path":"pages/coupon_goods/index",
+            "style":{
+                "navigationBarTitleText":"指定商品可用"
+            },
+            "auth":true
+        },{
+            "path":"pages/my_coupon/index",
+            "style":{
+                "navigationBarTitleText":"优惠券"
+            },
+            "auth":true
+        },{
+            "path":"pages/distribution/index",
+            "style":{
+                "navigationBarTitleText":"分销商"
+            },
+            "auth":true
+        },{
+            "path":"pages/distribution_fans/index",
+            "style":{
+                "navigationBarTitleText":"我的粉丝"
+            }
+        },{
+            "path":"pages/distribution_order/index",
+            "style":{
+                "navigationBarTitleText":"分销订单"
+            }
+        },{
+            "path":"pages/balance_detail/index",
+            "style":{
+                "navigationBarTitleText":"佣金明细"
+            }
+        },{
+            "path":"pages/member_center/index",
+            "style":{
+                "navigationBarTitleText":"分销等级",
+                "navigationStyle":"custom"
+            }
+        },{
+            "path":"pages/withdraw_deposit/index",
+            "style":{
+                "navigationBarTitleText":"提现"
+            }
+        },{
+            "path":"pages/withdraw_record/index",
+            "style":{
+                "navigationBarTitleText":"提现记录"
+            }
+        },{
+            "path":"pages/withdraw_detail/index",
+            "style":{
+                "navigationBarTitleText":"提现详情"
+            }
+        },{
+            "path":"pages/question_bank/index",
+            "style":{
+                "navigationBarTitleText":"题库"
+            },
+            "auth":true
+        },{
+            "path":"pages/do_exercises/index",
+            "style":{
+                "navigationBarTitleText":"做题"
+            }
+        },{
+            "path":"pages/answer_report/index",
+            "style":{
+                "navigationBarTitleText":"答题报告"
+            }
+        },{
+            "path":"pages/answer_sheet/index",
+            "style":{
+                "navigationBarTitleText":"答题卡"
+            }
+        },{
+            "path":"pages/my_question_bank/index",
+            "style":{
+                "navigationBarTitleText":"我的题库"
+            }
+        }
+    ]
+    }],
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "商城",
+        "navigationBarBackgroundColor": "#FFFFFF",
+        "backgroundColor": "#F8F8F8",
+        "h5": {
+            "navigationStyle": "custom"
+        }
+    },
+    "easycom": {
+        "custom": {
+            "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue",
+            "^w-(.*)": "@/components/widgets/$1/$1.vue"
+            
+        }
+    }
+}

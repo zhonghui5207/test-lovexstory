@@ -1,0 +1,12 @@
+page {
+    background-color: $u-bg-color;
+    font-size: 28rpx;
+}
+
+// 文本超过两行后隐藏
+.text_hidden {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

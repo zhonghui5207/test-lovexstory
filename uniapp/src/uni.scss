@@ -1,0 +1,140 @@
+
+@use "sass:map";
+@use "sass:math";
+@import '@/uni_modules/vk-uview-ui/theme.scss';
+
+$u-main-color: #333333;
+$u-content-color: #666666;
+$u-tips-color: #999999;
+$u-light-color: #c0c4cc;
+$u-border-color: #e5e5e5;
+$u-bg-color: #f3f4f6;
+$u-disabled-color: #c8c9cc;
+
+$u-type-primary: #4173ff;
+$u-type-primary-light: #ecf5ff;
+$u-type-primary-disabled: #a0cfff;
+$u-type-primary-dark: #2b85e4;
+
+$u-type-warning: #ff9900;
+$u-type-warning-disabled: #fcbd71;
+$u-type-warning-dark: #f29100;
+$u-type-warning-light: #fdf6ec;
+
+$u-type-success: #19be6b;
+$u-type-success-disabled: #71d5a1;
+$u-type-success-dark: #18b566;
+$u-type-success-light: #dbf1e1;
+
+$u-type-error: #fa3534;
+$u-type-error-disabled: #fab6b6;
+$u-type-error-dark: #dd6161;
+$u-type-error-light: #fef0f0;
+
+$u-type-info: #909399;
+$u-type-info-disabled: #c8c9cc;
+$u-type-info-dark: #82848a;
+$u-type-info-light: #f4f4f5;
+
+$u-form-item-height: 60rpx;
+$u-form-item-border-color: #e5e5e5;
+
+
+//***********************************
+
+
+
+// 主题类型
+$types: primary,
+success,
+warning,
+error,
+info;
+
+// 主题色
+$colors: (
+	'black': #000000,
+	'white': #ffffff,
+	'disabled': #c8c9cc,
+	'border': (
+		'base': #c0c4cc,
+		'light': #e5e5e5
+	),
+	'bg': (
+		'base': #f2f2f2,
+		'light': #f6f6f6
+	),
+	'primary': (
+		'base': #2073F4
+	),
+	'success': (
+		'base': #67c23a
+	),
+	'warning': (
+		'base': #e6a23c
+	),
+	'error': (
+		'base': #f56c6c
+	),
+	'info': (
+		'base': #666666
+	)
+);
+
+$color-primary: map.get($colors, 'primary', 'base');
+$color-success: map.get($colors, 'success', 'base');
+$color-warning: map.get($colors, 'warning', 'base');
+$color-error: map.get($colors, 'error', 'base');
+$color-info: map.get($colors, 'info', 'base');
+$color-white: map.get($colors, 'white');
+$color-black: map.get($colors, 'black');
+
+// 禁用的颜色
+$color-disabled: map.get($colors, 'disabled');
+
+// 边框颜色
+$color-border: map.get($colors, 'border', 'base');
+$color-border-light: map.get($colors, 'border', 'light');
+
+// 背景颜色
+$color-bg: map.get($colors, 'bg', 'base');
+$color-bg-light: map.get($colors, 'bg', 'light');
+
+// 生成各种主题类型的颜色混合
+@mixin get_color_light($type, $number) {
+    $colors: map.deep-merge((
+		$type: (
+			'light-#{$number}': mix(
+				$color-white,
+                map.get($colors, $type, 'base'),
+                math.percentage(math.div($number, 10))
+			),
+		),
+    ),$colors) !global;
+}
+
+@for $i from 1 through 9 {
+    @each $type in $types {
+        @include get_color_light($type, $i);
+    }
+}
+
+// 字体颜色
+
+$color-text-deep: #222222 !default;
+$color-text-primary: #333333 !default;
+$color-text-light: #555555 !default;
+$color-text-muted: #888888 !default;
+
+// 字体大小
+$font-size-xxs: 22rpx !default;
+$font-size-xs: 24rpx !default;
+$font-size-sm: 26rpx !default;
+$font-size-md: 28rpx !default;
+$font-size-lg: 30rpx !default;
+$font-size-xl: 32rpx !default;
+
+// 圆角
+$border-radius: 6rpx !default;
+$border-radius-large: 10rpx !default;
+$border-radius-larger: 20rpx !default;

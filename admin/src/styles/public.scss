@@ -1,0 +1,55 @@
+body {
+    @apply text-base text-tx-primary overflow-hidden min-w-[375px];
+}
+.form-tips {
+    @apply text-tx-secondary text-xs leading-6 mt-1;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+/* NProgress */
+#nprogress .bar {
+    @apply bg-primary #{!important};
+}
+
+.ls-del-wrap {
+    position: relative;
+    &:hover > .ls-icon-del {
+        display: block;
+    }
+    .ls-icon-del {
+        display: none;
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        line-height: 20px;
+        width: 16px;
+        height: 16px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+.ls-input-border {
+    .el-input__wrapper {
+        box-shadow: none;
+    }
+}
+
+//文本超过两行隐藏
+.text_hidden {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+
+}

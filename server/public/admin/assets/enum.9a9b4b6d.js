@@ -1,0 +1,1 @@
+var a=(u=>(u.ADD="add",u.EDIT="edit",u))(a||{}),D=(u=>(u.all_num="\u5168\u90E8",u.waitpay_num="\u5F85\u652F\u4ED8",u.complete_num="\u5DF2\u5B8C\u6210",u.close_num="\u5DF2\u5173\u95ED",u))(D||{});export{D as O,a as P};

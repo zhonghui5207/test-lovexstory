@@ -1,0 +1,1 @@
+import{r}from"./index.9967fbd7.js";function t(e){return r.get({url:"/user.user/lists",params:e})}function u(e){return r.get({url:"/user.user/detail",params:e})}function a(e){return r.post({url:"/user.user/adjustUserWallet",params:e})}function i(e){return r.post({url:"/user.user/setinfo",params:e},{delEmptyData:!1})}export{a,u as b,i as c,t as d};
