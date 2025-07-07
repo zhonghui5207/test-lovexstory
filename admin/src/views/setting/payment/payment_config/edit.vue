@@ -239,9 +239,9 @@ const paymentWay = computed(() => {
         case 1:
             return '微信支付'
         case 2:
-            return '余额支付'
-        case 3:
             return '支付宝支付'
+        case 3:
+            return '余额支付'
     }
 })
 /** Computed End **/
@@ -257,8 +257,8 @@ const initPaymentConfigDetail = async (): Promise<void> => {
         ...res
     }
     delete result.config
-    if (result.pay_way == 2) result.interface_version = 'v2'
-    if (result.pay_way == 3) result.mode = 'normal_mode'
+    if (result.pay_way == 1) result.interface_version = 'v2'
+    if (result.pay_way == 2) result.pattern = 'normal_mode'
     result.merchant_type = 'ordinary_merchant'
     ;(formData.value as object) = result
 }
@@ -269,6 +269,11 @@ const handlePaymentConfigEdit = async (): Promise<void> => {
     // 当微信支付时需固定写死
     if (paymentWay.value == '微信支付') {
         formData.value.interface_version = 'v2'
+        formData.value.merchant_type = 'ordinary_merchant'
+    }
+    // 当支付宝支付时需固定写死
+    if (paymentWay.value == '支付宝支付') {
+        formData.value.pattern = 'normal_mode'
         formData.value.merchant_type = 'ordinary_merchant'
     }
     await apiPaymentConfigSet({ ...formData.value })
