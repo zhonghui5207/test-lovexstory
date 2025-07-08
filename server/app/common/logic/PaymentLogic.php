@@ -147,6 +147,11 @@ class PaymentLogic extends BaseLogic
                 $payService = (new WeChatPayService($terminal, $order['user_id'] ?? null));
                 $result = $payService->pay($from, $order);
                 break;
+            case PayEnum::ALI_PAY:
+                //支付宝支付
+                $payService = (new AliPayService());
+                $result = $payService->pay($from, $order);
+                break;
             default:
                 self::$error = '订单异常';
                 $result = false;
