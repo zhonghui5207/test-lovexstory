@@ -85,6 +85,9 @@ export function usePay() {
                 case PayWayEnum.WECHAT:
                     result = await handleWechatPay(res)
                     break
+                case PayWayEnum.ALIPAY:
+                    result = await handleAliPay(res)
+                    break
                 default:
                     throw '支付方式不对'
             }
@@ -115,6 +118,33 @@ export function usePay() {
         } catch (err) {
             toast('支付取消')
             console.log('微信支付失败', err)
+            return false
+        }
+    }
+
+    /**
+     * @description 支付宝支付
+     * @param { params } 支付订单
+     */
+    const handleAliPay = async (params: any): Promise<boolean> => {
+        try {
+            // 支付宝H5支付，直接跳转
+            // #ifdef H5
+            if (params.config) {
+                // 创建临时表单并提交
+                const tempForm = document.createElement('div')
+                tempForm.innerHTML = params.config
+                document.body.appendChild(tempForm)
+                const form = tempForm.querySelector('form')
+                if (form) {
+                    form.submit()
+                }
+                return true
+            }
+            // #endif
+            throw '支付宝支付配置错误'
+        } catch (err) {
+            console.log('支付宝支付失败', err)
             return false
         }
     }

@@ -418,6 +418,98 @@ class PayNotifyLogic {
 - **权限控制**: 只有超管可以修改支付配置
 - **审计日志**: 配置变更记录
 
+### 7. 支付宝支付集成实践总结 (2025-07-08)
+
+#### 7.1 技术架构完整性验证
+```php
+// 支付宝支付完整技术栈
+数据库层：ls_dev_pay (支付配置) + ls_dev_pay_way (场景配置)
+配置层：PayConfigLogic + PayConfigValidate (管理后台配置)
+业务层：PaymentLogic (统一支付入口)
+服务层：AliPayService (支付宝具体实现)
+SDK层：Alipay EasySDK (官方SDK)
+前端层：payment.ts (支付处理逻辑)
+```
+
+#### 7.2 关键问题与解决方案
+
+**问题1：配置保存缺失**
+```php
+// PayConfigLogic.php 原本只处理微信支付
+// 解决：添加支付宝配置处理分支
+} elseif ($pay_config['pay_way'] == PayEnum::ALI_PAY) {
+    $config = [
+        'pattern' => $params['pattern'],
+        'merchant_type' => $params['merchant_type'], 
+        'app_id' => $params['app_id'],
+        'private_key' => $params['private_key'],
+        'ali_public_key' => $params['ali_public_key'],
+    ];
+}
+```
+
+**问题2：支付核心逻辑缺失**
+```php
+// PaymentLogic.php 缺少ALI_PAY处理分支
+// 解决：添加支付宝支付处理
+case PayEnum::ALI_PAY:
+    //支付宝支付
+    $payService = (new AliPayService());
+    $result = $payService->pay($from, $order);
+    break;
+```
+
+**问题3：前端枚举错误**
+```typescript
+// 前端支付方式显示错误
+// 解决：修正枚举映射
+case 2: return '支付宝支付'  // 原来错误显示为'余额支付'
+case 3: return '余额支付'   // 原来错误显示为'支付宝支付'
+```
+
+**问题4：域名配置不匹配**
+```
+支付宝应用配置域名：knowledge.lovexstory.com
+实际部署域名：test.lovexstory.com
+解决：更新支付宝应用配置域名为实际域名
+```
+
+#### 7.3 支付宝H5支付流程
+```mermaid
+graph TD
+    A[用户选择支付宝] --> B[调用PaymentLogic::pay]
+    B --> C[创建AliPayService实例]
+    C --> D[读取支付宝配置]
+    D --> E[调用wapPay生成支付表单]
+    E --> F[返回HTML跳转代码]
+    F --> G[前端接收并跳转到支付宝]
+    G --> H[用户在支付宝完成支付]
+    H --> I[支付宝回调notify接口]
+    I --> J[验证签名并更新订单状态]
+    J --> K[支付完成]
+```
+
+#### 7.4 配置参数结构
+```json
+// 支付宝完整配置结构
+{
+  "pattern": "normal_mode",           // 支付模式
+  "merchant_type": "ordinary_merchant", // 商户类型
+  "app_id": "2021005169608133",      // 应用ID
+  "private_key": "MIIEvQ...",        // 应用私钥(RSA2)
+  "ali_public_key": "MIIBIjANB..."   // 支付宝公钥
+}
+```
+
+#### 7.5 多端支持策略
+```php
+// 支付宝多终端适配
+H5端：wapPay() - 手机网站支付，跳转到支付宝H5页面
+PC端：pagePay() - 电脑网站支付，生成二维码
+APP端：appPay() - APP支付，调用支付宝APP
+小程序：暂不支持（支付宝小程序需单独申请）
+```
+
 ---
 
 ## 订单系统分析
@@ -587,6 +679,37 @@ value: 配置值 (支持JSON)
 
 ---
 
-*文档更新时间: 2025-07-04*
-*分析深度: 深度分析*
-*覆盖系统: 用户系统、支付系统、订单系统、分销系统等核心模块*
+## 实战问题解决案例库
+
+### 案例1：强制绑定手机号问题 (2025-07-08)
+**问题现象**: 用户登录后被强制要求绑定手机号，无法进入订单页面
+**技术原因**: 系统配置 `coerce_mobile` 开启了强制绑定
+**解决路径**: 管理后台 → 设置 → 用户设置 → 登录注册设置 → 关闭强制绑定手机号
+**涉及文件**: 
+- `/server/config/project.php` (默认配置)
+- 数据库 `ls_config` 表 (实际配置存储)
+
+### 案例2：前端静态资源404问题 (2025-07-08)
+**问题现象**: 管理后台加载时，assets目录下的JS/CSS文件返回404
+**技术原因**: Nginx配置缺少对 `/admin/assets/` 路径的静态文件处理规则
+**解决方案**: 在宝塔面板添加Nginx配置
+```nginx
+location /admin/ {
+    alias /www/wwwroot/test.lovexstory.com/server/public/admin/;
+    try_files $uri $uri/ @admin;
+}
+```
+
+### 案例3：调试方法论的重要性
+**错误示例**: 看到500错误就盲目修改PaymentLogic.php代码
+**正确流程**: 
+1. 分析HTTP状态码含义 (200 vs 500)
+2. 查看错误日志详细信息
+3. 检查配置和环境因素
+4. 最后才考虑代码逻辑问题
+
+---
+
+*文档更新时间: 2025-07-08*
+*分析深度: 深度分析 + 实战案例*
+*覆盖系统: 用户系统、支付系统、订单系统、分销系统 + 支付宝集成完整实践*

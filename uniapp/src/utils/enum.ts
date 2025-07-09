@@ -24,8 +24,9 @@ export const PayEnum = {
 
 // 支付方式
 export const PayWayEnum = {
-    WALLET: 3, // 钱包
-    WECHAT: 1 // 微信
+    WECHAT: 1, // 微信
+    ALIPAY: 2, // 支付宝
+    WALLET: 3 // 钱包
 }
 
 // 用户资料
