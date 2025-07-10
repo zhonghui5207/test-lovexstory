@@ -149,7 +149,7 @@ class PaymentLogic extends BaseLogic
                 break;
             case PayEnum::ALI_PAY:
                 //支付宝支付
-                $payService = (new AliPayService());
+                $payService = (new AliPayService($terminal));
                 $result = $payService->pay($from, $order);
                 break;
             default:
