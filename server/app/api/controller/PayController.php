@@ -104,7 +104,7 @@ class PayController extends BaseApiController
     public function aliNotify()
     {
         $params = $this->request->post();
-        $result = (new AliPayService())->notify($params);
+        $result = (new AliPayService(UserTerminalEnum::H5))->notify($params);
         if (true === $result) {
             echo 'success';
         } else {
