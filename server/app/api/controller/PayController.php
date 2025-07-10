@@ -103,11 +103,24 @@ class PayController extends BaseApiController
      */
     public function aliNotify()
     {
-        $params = $this->request->post();
-        $result = (new AliPayService(UserTerminalEnum::H5))->notify($params);
-        if (true === $result) {
-            echo 'success';
-        } else {
+        try {
+            $params = $this->request->post();
+            if (empty($params)) {
+                $params = $this->request->get();
+            }
+            
+            Log::write('支付宝回调参数: ' . json_encode($params), 'info');
+            
+            $result = (new AliPayService(UserTerminalEnum::H5))->notify($params);
+            if (true === $result) {
+                Log::write('支付宝回调成功', 'info');
+                echo 'success';
+            } else {
+                Log::write('支付宝回调失败', 'error');
+                echo 'fail';
+            }
+        } catch (\Exception $e) {
+            Log::write('支付宝回调异常: ' . $e->getMessage() . ' - ' . $e->getFile() . ':' . $e->getLine(), 'error');
             echo 'fail';
         }
     }
