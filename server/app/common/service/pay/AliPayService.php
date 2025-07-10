@@ -162,7 +162,7 @@ class AliPayService extends BasePayService
                     }
 
                     //特殊情况：用户在前端支付成功的情况下，调用回调接口之前，订单被关闭
-                    if ($order['order_status'] == OrderEnum::STATUS_CLOSE) {
+                    if ($order['order_status'] == OrderEnum::ORDER_STSTUS_CLONE) {
                         //更新订单支付状态为已支付
                         Order::update(['pay_status' => PayEnum::ISPAID],['id'=>$order['id']]);
 
