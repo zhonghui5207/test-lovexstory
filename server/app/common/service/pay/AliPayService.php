@@ -29,7 +29,7 @@ use app\common\enum\PayEnum;
 use app\common\enum\UserTerminalEnum;
 use app\common\logic\PayNotifyLogic;
 use app\common\model\IntegralOrder;
-use app\common\model\Order;
+use app\common\model\order\Order;
 use app\common\model\pay\PayConfig;
 use app\common\service\after_sale\AfterSaleService;
 use think\facade\Log;
