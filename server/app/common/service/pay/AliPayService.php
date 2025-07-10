@@ -86,8 +86,8 @@ class AliPayService extends BasePayService
         }
         $options = new Config();
         $options->protocol = 'https';
-        $options->gatewayHost = 'openapi.alipay.com';
-//        $options->gatewayHost = 'openapi.alipaydev.com'; //测试沙箱地址
+        // $options->gatewayHost = 'openapi.alipay.com';
+        $options->gatewayHost = 'openapi.alipaydev.com'; //测试沙箱地址
         $options->signType = 'RSA2';
         $options->appId = $config['config']['app_id'] ?? '';
         // 应用私钥
