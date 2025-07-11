@@ -91,7 +91,10 @@ export function usePay() {
                 default:
                     throw '支付方式不对'
             }
-            handlePayResult(result)
+            // 支付宝H5支付会返回'redirect'，此时不需要调用handlePayResult
+            if (result !== 'redirect') {
+                handlePayResult(result)
+            }
         } catch (err: any) {
             toast(err)
             console.log('预支付', err)
@@ -139,7 +142,9 @@ export function usePay() {
                 if (form) {
                     form.submit()
                 }
-                return true
+                // 支付宝H5支付不需要前端处理结果，支付宝会自己跳转
+                // 返回一个特殊值，让上层不调用handlePayResult
+                return 'redirect' as any
             }
             // #endif
             throw '支付宝支付配置错误'

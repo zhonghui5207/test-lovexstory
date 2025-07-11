@@ -255,9 +255,10 @@ class AliPayService extends BasePayService
         $domain = request()->domain();
         $url = $domain . '/mobile/pages/index/index';
         if ($attach == 'order') {
-            $url = $domain . '/mobile/pages/order_list/order_list';
+            // 支付成功后跳转到支付结果页面，而不是订单列表
+            $url = $domain . '/mobile/bundle/pages/pay_result/index?orderId=' . $order['id'];
         } else if ($attach == 'recharge') {
-            $url = $domain . '/mobile/bundle/pages/user_recharge/user_recharge';
+            $url = $domain . '/mobile/bundle/pages/user_charge/index';
         }
         $result = $this->pay->wap()->optional('passback_params', $attach)->pay(
             '订单:' . $order['sn'],
